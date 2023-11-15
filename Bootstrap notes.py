@@ -46,11 +46,10 @@ boot_df = pd.DataFrame({'x' : boot_means})
 
 ## create a loop you get to choose sampling distr from 
 stat = "mean"
-
 boot_stat = []
 dat = pd.read_csv("2017_Fuel_Economy_Data.csv")
 dat  = dat["Combined Mileage (mpg)"]
-n = len(variable)
+n = len(dat)
 n_boot = 10_000
 
 for i in range(n_boot):
@@ -83,14 +82,23 @@ boot_df = pd.DataFrame({'x' : boot_stat})
 
 ## reading in car data 
 
+#%% make class
+
+
+
+class Boot_CI():
+    def __init__(self):
+        "Initialize the simulation"
+        self.stat = "mean"
+        self.dat = None
+        self.n_boot = 0 
+        self.boot_stat = None 
+        self.ci_level = .95
 
 
 
 
-
-
-
-
+test = Boot_CI()
 
 
 

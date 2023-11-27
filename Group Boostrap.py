@@ -11,24 +11,25 @@ from plotnine import *
 import os
 
 os.chdir("/Users/leah/Desktop/2450 Spyder/Notes")
-
+dat = pd.read_csv("2017_Fuel_Economy_Data.csv")
+dat  = dat["Combined Mileage (mpg)"]
 
 
 class Boot_CI():
-    def __init__(self):
+    def __init__(self, data = None):
         "Initialize the simulation"
         self.stat = "mean"
-        self.dat = None
+        self.dat = data
         self.n_boot = 0 
         self.boot_stat = None 
         self.ci_level = .95
+        self.n = len(self.dat)
         
-        
-        
-    def for_loop(self):
+
+    def add_sims(self):
         self.boot_stat = []
         for i in range(self.n_boot):
-            boot_sample = self.dat.sample(n, replace = True)
+            boot_sample = self.dat.sample(self.n, replace = True)
             
             if self.stat == "median":
                 self.boot_stat.append(float(boot_sample.median()))
@@ -49,7 +50,7 @@ class Boot_CI():
     
 
 
-test = Boot_CI(ci_level = .95)
+test = Boot_CI(data= dat)
 
 
 

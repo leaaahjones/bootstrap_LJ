@@ -23,13 +23,13 @@ class Boot_CI():
         self.n_boot = 0 
         self.boot_stat = None 
         self.ci_level = .95
-        self.n = len(self.dat)
         
-
+        
     def add_sims(self):
         self.boot_stat = []
+        n = len(self.dat)
         for i in range(self.n_boot):
-            boot_sample = self.dat.sample(self.n, replace = True)
+            boot_sample = self.dat.sample(n, replace = True)
             
             if self.stat == "median":
                 self.boot_stat.append(float(boot_sample.median()))
@@ -45,14 +45,14 @@ class Boot_CI():
                 
     def clear_sims(self):
         self.boot_stat = []
+        
+    def load_data(self,data):
+        self.dat = data
 
         
-    
+test = Boot_CI()
 
-
-test = Boot_CI(data= dat)
-
-
+test.load_data(data = dat)
 
 
 

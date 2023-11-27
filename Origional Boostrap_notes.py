@@ -81,4 +81,3 @@ boot_df = pd.DataFrame({'x' : boot_stat})
 
 
 
-## reading in car data 

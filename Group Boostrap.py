@@ -48,6 +48,10 @@ class Boot_CI():
         
     def load_data(self,data):
         self.dat = data
+        
+    def update_n_boot(self, new_n_boot):
+        self.n_boot = new_n_boot
+
 
         
 test = Boot_CI()

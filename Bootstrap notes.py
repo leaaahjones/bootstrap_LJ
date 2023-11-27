@@ -52,6 +52,7 @@ dat  = dat["Combined Mileage (mpg)"]
 n = len(dat)
 n_boot = 10_000
 
+boot_stat = []
 for i in range(n_boot):
     boot_sample = dat.sample(n, replace = True)
     
@@ -94,15 +95,55 @@ class Boot_CI():
         self.n_boot = 0 
         self.boot_stat = None 
         self.ci_level = .95
+        
+        
+        
+    def for_loop(self):
+        self.boot_stat = []
+        for i in range(self.n_boot):
+            boot_sample = self.dat.sample(n, replace = True)
+            
+            if self.stat == "median":
+                self.boot_stat.append(float(boot_sample.median()))
+                
+            elif self.stat == "mean":
+                self.boot_stat.append(float(boot_sample.mean()))
+                
+            elif self.stat == "std dev":
+                self.boot_stat.append(float(boot_sample.std()))
+                
+            else: 
+                raise TypeError("Wrong Statistic name")
+                
+    def clear_sims(self):
+        self.boot_stat = []
+
+        
+    
 
 
 
 
-test = Boot_CI()
+test = Boot_CI(ci_level = .95)
 
 
 
 
+boot_stat = []
+for i in range(n_boot):
+    boot_sample = dat.sample(n, replace = True)
+    
+    if stat == "median":
+        boot_stat.append(float(boot_sample.median()))
+        
+    elif stat == "mean":
+        boot_stat.append(float(boot_sample.mean()))
+        
+    elif stat == "std dev":
+        boot_stat.append(float(boot_sample.std()))
+        
+    else: 
+        raise TypeError("Wrong Statistic name")
 
 
 

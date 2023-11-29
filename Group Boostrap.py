@@ -46,11 +46,14 @@ class Boot_CI():
     def clear_sims(self):
         self.boot_stat = []
         
-    def load_data(self,data):
+    def load_data(self,data): #QUESTION: is this right? 
         self.dat = data
         
     def update_n_boot(self, new_n_boot):
         self.n_boot = new_n_boot
+        
+    def set_statistic(self, stat):
+        self.stat = stat
 
 
         

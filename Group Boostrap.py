@@ -74,8 +74,10 @@ class Boot_CI():
         else: 
             alpha = float(input("Please enter confidence level percentage: "))
             alpha = alpha/2
-            np.percentile(self.boot_stat, [alpha, 100-alpha])
+            ci = np.percentile(self.boot_stat, [alpha, 100-alpha])
             #do we need to return?  np.percent
+            
+        return ci 
             
             
     

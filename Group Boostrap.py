@@ -66,29 +66,52 @@ class Boot_CI():
             )
     
         return p
-        
+    
+    #this is a method that creates a confidence interval from the list boot_stat
     def conf_interval(self):
+        """Assumes boot_stat is a list. Calculates a confidence interval off the list
+        returns the value of the confidence interval in an array """
+        
+        #if the length of boot_stat is 0, meaning nothing has run, then the
+        #method will not work and print an error message
         if len(self.boot_stat) == 0:
+            #the message that is printed if the length is 0
             print("Boot_stat is 0. Must run sample first")
-            
+        
+        #if boot_stat is not 0, then this runs
         else: 
-            alpha = float(input("Please enter confidence level percentage: "))
-            alpha = alpha/2
-            ci = np.percentile(self.boot_stat, [alpha, 100-alpha])
-            #do we need to return?  np.percent
             
+            #prompts user to input the level of confidence 
+            alpha = float(input("Please enter confidence level percentage. Must be an integer: "))
+            
+            #alters alpha for a 2 tailed test
+            alpha = alpha/2
+            
+            #uses the percentile function in numpy and returns a confidence interval
+            ci = np.percentile(self.boot_stat, [alpha, 100-alpha])
+        
+        #returns the two values of confidence interval   
         return ci 
             
             
     
-
-
-        
+#creates the class       
 test = Boot_CI()
+
+#runs method to load data
 test.load_data(data = dat)
+
+#sets the number of times to bootstrap
 test.update_n_boot(10000)
+
+#actually runs the boot strap 
 test.add_sims()
+
+#creates a plot of the boot
 test.plot_boot()
+
+#calculates the confidence interval 
+test.conf_interval()
 
 
     

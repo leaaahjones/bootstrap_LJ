@@ -5,20 +5,48 @@ Created on Wed Oct 25 14:40:30 2023
 
 @author: leah
 """
-
+# Must be the updated versions
 import pandas as pd
 from plotnine import *
 import os
 import numpy as np
 
-
+# Must be from the correct directory
 os.chdir("/Users/leah/Desktop/2450 Spyder/Notes")
+# Must be from the correct folder
 dat = pd.read_csv("2017_Fuel_Economy_Data.csv")
+# Must be the correct file name
 dat  = dat["Combined Mileage (mpg)"]
 
-
+# Class for calculating bootstrap confidence intervals
 class Boot_CI():
     def __init__(self, data = None):
+    """
+        Initialize the Boot_CI object.
+
+        Parameters
+        ----------
+        data : pd.Series, optional
+            Input data for which the bootstrap confidence interval will be calculated.
+            The default is None.
+
+        Returns
+        -------
+        None.
+
+        Attributes
+        ----------
+        stat : str
+            The statistic to calculate from the bootstrap samples (default is "mean").
+        dat : pd.Series
+            The input data for which the bootstrap confidence interval will be calculated.
+        n_boot : int
+            The number of bootstrap samples to generate (default is 0).
+        boot_stat : list
+            List to store the calculated statistic for each bootstrap sample.
+        ci_level : float
+            Confidence level for the bootstrap confidence interval (default is 0.95).
+        """
         "Initialize the simulation"
         self.stat = "mean"
         self.dat = data
